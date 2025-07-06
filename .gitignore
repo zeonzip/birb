@@ -1,0 +1,8 @@
+# you need to add your own PGSQL host
+birb-backend/birb/src/host.rs
+
+**/target
+**/Cargo.lock
+.DS_Store
+
+.idea
