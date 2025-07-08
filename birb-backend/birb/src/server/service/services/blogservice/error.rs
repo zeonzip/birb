@@ -1,4 +1,4 @@
-use crate::{database::databases::error::SchemaError, server::service::service::ServiceError};
+use crate::database::databases::error::SchemaError;
 
 #[derive(Debug, thiserror::Error)]
 pub enum BlogServiceError {
@@ -7,5 +7,3 @@ pub enum BlogServiceError {
     #[error("{0}")]
     Database(#[from] sqlx::Error),
 }
-
-impl ServiceError for BlogServiceError {}

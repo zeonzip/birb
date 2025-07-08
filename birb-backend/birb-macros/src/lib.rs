@@ -9,9 +9,9 @@ pub fn derive_error(input: TokenStream) -> TokenStream {
     let ident = derive_input.ident;
     let mut generics = derive_input.generics;
 
-    let generics_clone = generics.clone();
+    let lifetimed_generic = generics.clone();
 
-    let (_, ty_generics, _) = generics_clone.split_for_impl();
+    let (_, ty_generics, _) = lifetimed_generic.split_for_impl();
 
     generics.params.insert(
         0,

@@ -27,7 +27,7 @@ impl ApiServer {
             .route("/{*wildcard}", get(wildcard))
             .layer(cors);
 
-        axum::serve(self.listener, app).await.unwrap();
+        axum::serve(self.listener, app).await?;
 
         Ok(())
     }
