@@ -20,6 +20,6 @@ impl BlogSchema {
     pub async fn posts(&self) -> Result<PostsTable, SchemaError> {
         let connection = self.connection.acquire_connection().await?;
 
-        Ok(PostsTable::new(connection).await?)
+        Ok(PostsTable::new(connection))
     }
 }

@@ -20,8 +20,8 @@ impl SqlTable for PostsTable {
     type Error = SchemaError;
     type Identifier = BlogId;
 
-    async fn new(conn: PoolConnection<Postgres>) -> Result<Self, Self::Error> {
-        Ok(Self { conn })
+    fn new(conn: PoolConnection<Postgres>) -> Self {
+        Self { conn }
     }
     async fn insert(
         &mut self,
@@ -43,7 +43,7 @@ impl SqlTable for PostsTable {
     async fn delete(&mut self, id: Self::Identifier) -> Result<(), Self::Error> {
         query("DELETE FROM posts WHERE id = $1;")
             .bind(id)
-            .fetch_one(&mut *self.conn)
+            .execute(&mut *self.conn)
             .await?;
 
         Ok(())

@@ -13,14 +13,13 @@ pub trait SqlTable: Sized {
     type Error: Error + Display;
     type Identifier: Sync + Send;
 
-    async fn new(conn: PoolConnection<Postgres>) -> Result<Self, Self::Error>;
+    fn new(conn: PoolConnection<Postgres>) -> Self;
+    async fn get(&mut self, id: Self::Identifier) -> Result<Self::Element, Self::Error>;
     async fn insert(
         &mut self,
         element: Self::InsertedElement,
     ) -> Result<Self::Identifier, Self::Error>;
     async fn delete(&mut self, id: Self::Identifier) -> Result<(), Self::Error>;
-
-    async fn get(&mut self, id: Self::Identifier) -> Result<Self::Element, Self::Error>;
 }
 
 // used for reuseable table identifier const declarations

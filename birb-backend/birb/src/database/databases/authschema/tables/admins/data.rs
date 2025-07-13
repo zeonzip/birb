@@ -9,10 +9,19 @@ use crate::{
 };
 
 #[derive(FromRow)]
-pub struct RefreshToken {
+pub struct Admin {
     id: SerialId,
-    hashed_token: HashedData,
+    username: String,
+    hashed_pass: HashedData,
     salt: Salt,
     created_at: DateTime<Utc>,
     issued_by: Option<IpAddr>,
+}
+
+#[derive(FromRow)]
+pub struct InsertAdmin {
+    pub username: String,
+    pub hashed_pass: HashedData,
+    pub salt: Salt,
+    pub issued_by: Option<IpAddr>,
 }

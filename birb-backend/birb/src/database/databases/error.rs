@@ -32,8 +32,8 @@ impl<'a> IntoErrorResponse<'a> for SchemaError {
                 StatusCode::NOT_FOUND,
             ), // maybe specify what content that was not found in the future, e.g Post not found
             SchemaError::Fatal(_) => ErrorResponse::new(
-                "INTERNAL_ERROR",
-                Cow::Borrowed("Internal Fatal Server Error"),
+                "INTERNA_DATABASE_ERROR",
+                Cow::Borrowed("Internal Database Server Error"),
                 StatusCode::INTERNAL_SERVER_ERROR,
             ),
         }
